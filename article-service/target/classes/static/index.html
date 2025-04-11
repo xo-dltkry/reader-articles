@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>📚 IITU Article Service</title>
+    <style>
+        body {
+            background: #f7f9fc;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+        }
+        h1 {
+            text-align: center;
+            color: #0066cc;
+        }
+        .article-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin: 1rem auto;
+            max-width: 600px;
+            transition: transform 0.2s ease;
+        }
+        .article-card:hover {
+            transform: scale(1.02);
+        }
+        .article-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #222;
+        }
+        .article-description {
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #666;
+        }
+        footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+<h1>📚 IITU Article Service</h1>
+
+<div id="articles-container"></div>
+
+<footer>
+    &copy; 2025 IITU Software Engineering | Group 2110
+</footer>
+
+<script>
+    // Загружаем статьи с бэкенда
+    fetch('/api/articles')
+        .then(response => response.json())
+        .then(articles => {
+            const container = document.getElementById('articles-container');
+            articles.forEach(article => {
+                const card = document.createElement('div');
+                card.className = 'article-card';
+
+                card.innerHTML = `
+                        <div class="article-title">${article.title}</div>
+                        <div class="article-description">${article.content}</div>
+                    `;
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Ошибка при загрузке статей:', error);
+        });
+</script>
+</body>
+</html>
