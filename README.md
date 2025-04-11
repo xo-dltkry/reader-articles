@@ -1,6 +1,5 @@
 Student: [Dauletkerey Kelgenbay]  
 Branch: [main]  
-Commit Hash: [Latest Commit Hash]  
 
 ## What I Built
 
